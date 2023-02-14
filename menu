@@ -12,11 +12,11 @@ struct buttonCordinate
 	int y;
 }bCordinate[3];
 int mposx, mposy;
-char button[10][15] = {"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
-char button2[10][15]={"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
+char button[15][15] = {"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
+char button2[15][15]={"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
 char homemenu[15] = "africa-2029610__480";
-char play[15]= "C:\Users\user\Pictures\5287527";
-char score[25] = "C:\Users\user\Pictures\0212.jpg,"
+char play[20]= "C:\Users\user\Pictures\5287527";
+char score[30] = "C:\Users\user\Pictures\0212.jpg,"
 char ins[25] ="C:\Users\user\Pictures\00000.jpg"
 
 
