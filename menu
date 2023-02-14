@@ -1,7 +1,7 @@
 #include <iostream>
 #include "iGraphics.h"
-#define screenHeight 600
-#define screenWidth  1200
+#define screenHeight 800
+#define screenWidth  1600
 
 /*
 	function iDraw() is called again and again by the system.
