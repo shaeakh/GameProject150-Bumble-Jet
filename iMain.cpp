@@ -15,8 +15,12 @@ using namespace std;
 double bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
-"screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp", };
+"screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
 //this string is for Level 1 Background rendering
+
+char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player//plane_0003.bmp", "player//plane_0004.bmp", "player//plane_0005.bmp", "player//plane_0006.bmp", "player//plane_0007.bmp", "player//plane_0008.bmp"};
+
+int chx=500,chy=480,chr_index=0;
 
 int mposx,  mposy;
 /*
@@ -29,7 +33,7 @@ void iDraw()
 	for (int i = 9; i < 60; i++){
 		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 	}
-
+	iShowBMP2(chx, chy, chr[chr_index],0);
 }
 
 /*
@@ -76,9 +80,15 @@ void iPassiveMouseMove(int mx,int my)
 */
 void iKeyboard(unsigned char key)
 {
-	if(key == 'q')
+	if(key == 'w')
 	{
-		//do something with 'q'
+		chy += 10;
+		if (chy >= 880) chy = 880;
+	}
+	if (key == 's')
+	{
+		chy -= 10;
+		if (chy <= 0) chy = 0;
 	}
 	//place your codes for other keys here
 }
@@ -95,7 +105,18 @@ void iKeyboard(unsigned char key)
 void iSpecialKeyboard(unsigned char key)
 {
 
-	if(key == GLUT_KEY_END)
+	if(key == GLUT_KEY_UP)
+	{
+		chy += 10;
+		if (chy >= 880) chy = 880;
+	}
+	if (key == GLUT_KEY_DOWN)
+	{
+		chy -= 10;
+		if (chy <= 0) chy = 0;
+	}
+
+	if (key == GLUT_KEY_END	)
 	{
 		exit(0);
 	}
@@ -111,9 +132,11 @@ void setall(){
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
 	for (int i = 9; i < 60; i++){			//on x axis for Level 1 Background rendering
-		bg1[i] -= 16;
-		if (bg1[i] <= 0) bg1[i] = 1616;
+		bg1[i] -= 8;
+		if (bg1[i] <= 0) bg1[i] = 1600 ;//1616
 	}		
+	chr_index = (chr_index + 1)%7;
+
 }
 
 
@@ -122,6 +145,6 @@ int main()
 	setall();
 	iSetTimer(25, change);
 	//place your own initialization codes here.
-	iInitialize(1632, 960, "demooo");
+	iInitialize(1600, 960, "demooo");
 	return 0;
 }
