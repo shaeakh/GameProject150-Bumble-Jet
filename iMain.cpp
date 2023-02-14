@@ -1,8 +1,8 @@
 /*
-    Original Author: S. M. Shahriar Nirjon
-    Last Modified by: Mohammad Saifur Rahman
-    last modified: October 13, 2015
-    Version: 2.0
+Original Author: S. M. Shahriar Nirjon
+Last Modified by: Mohammad Saifur Rahman
+last modified: October 13, 2015
+Version: 2.0
 */
 #include <iostream>
 #include<string>
@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "iGraphics.h"
 using namespace std;
-int chx = 500; //this variable stores the x co-ordinate of character images
+int chx = 700; //this variable stores the x co-ordinate of character images
 int chy = 480; //this variable stores the y co-ordinate of character images
 int chr_index = 0; //this variable stores the index of character images
 int chr_speed = 8;	 //this variable stores the speed of character rendering
@@ -22,7 +22,7 @@ int bg_width = 1600; //this variable stores the width of whole background
 int	slice = 60; //this variable stores the num of slice of background
 int slice_width = 32; //this variable stores the width of each slice of background
 
-
+int scr_index = 0;
 
 double bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
@@ -30,14 +30,17 @@ char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
 //this string is for Level 1 Background rendering
 
-char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player//plane_0003.bmp", "player//plane_0004.bmp", "player//plane_0005.bmp", "player//plane_0006.bmp", "player//plane_0007.bmp", "player//plane_0008.bmp"};
+char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player//plane_0003.bmp", "player//plane_0004.bmp", "player//plane_0005.bmp", "player//plane_0006.bmp", "player//plane_0007.bmp", "player//plane_0008.bmp" };
 //this string is for the character images
 
+char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp", "scoreboard//Slide3.bmp", "scoreboard//Slide4.bmp", "scoreboard//Slide5.bmp", "scoreboard//Slide6.bmp", "scoreboard//Slide7.bmp", "scoreboard//Slide8.bmp", "scoreboard//Slide9.bmp", "scoreboard//Slide10.bmp",
+"scoreboard//Slide11.bmp", "scoreboard//Slide12.bmp", "scoreboard//Slide13.bmp", "scoreboard//Slide14.bmp", "scoreboard//Slide15.bmp", "scoreboard//Slide16.bmp", "scoreboard//Slide17.bmp", "scoreboard//Slide18.bmp", "scoreboard//Slide19.bmp", "scoreboard//Slide20.bmp", 
+"scoreboard//Slide21.bmp", "scoreboard//Slide22.bmp", "scoreboard//Slide23.bmp", "scoreboard//Slide24.bmp", "scoreboard//Slide25.bmp", "scoreboard//Slide26.bmp", "scoreboard//Slide27.bmp", "scoreboard//Slide28.bmp", "scoreboard//Slide29.bmp", "scoreboard//Slide30.bmp" };
 
 
-int mposx,  mposy;
+int mposx, mposy;
 /*
-	function iDraw() is called again and again by the system.
+function iDraw() is called again and again by the system.
 */
 void iDraw()
 {
@@ -46,12 +49,13 @@ void iDraw()
 	for (int i = 9; i < slice; i++){
 		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 	}
-	iShowBMP2(chx, chy, chr[chr_index],0); //rendering the character images
+	iShowBMP(0, 0, score_board[scr_index]);
+	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
 }
 
 /*
-	function iMouseMove() is called when the user presses and drags the mouse.
-	(mx, my) is the position where the mouse pointer is.
+function iMouseMove() is called when the user presses and drags the mouse.
+(mx, my) is the position where the mouse pointer is.
 */
 void iMouseMove(int mx, int my)
 {
@@ -59,16 +63,16 @@ void iMouseMove(int mx, int my)
 }
 
 /*
-	function iMouse() is called when the user presses/releases the mouse.
-	(mx, my) is the position where the mouse pointer is.
+function iMouse() is called when the user presses/releases the mouse.
+(mx, my) is the position where the mouse pointer is.
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		//place your codes here
 	}
-	if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
 		//place your codes here
 	}
@@ -76,24 +80,24 @@ void iMouse(int button, int state, int mx, int my)
 /*iPassiveMouseMove is called to detect and use
 the mouse point without pressing any button */
 
-void iPassiveMouseMove(int mx,int my)
+void iPassiveMouseMove(int mx, int my)
 {
 	//place your code here
 
- mposx = mx;
- mposy = my;
- if(mx== 2){}        /*Something to do with mx*/
- else if(my== 2){}   /*Something to do with my*/
+	mposx = mx;
+	mposy = my;
+	if (mx == 2){}        /*Something to do with mx*/
+	else if (my == 2){}   /*Something to do with my*/
 
 }
 
 /*
-	function iKeyboard() is called whenever the user hits a key in keyboard.
-	key- holds the ASCII value of the key pressed.
+function iKeyboard() is called whenever the user hits a key in keyboard.
+key- holds the ASCII value of the key pressed.
 */
 void iKeyboard(unsigned char key)
 {
-	if(key == 'w')
+	if (key == 'w')
 	{
 		chy += 10;
 		if (chy >= 880) chy = 880;
@@ -107,18 +111,18 @@ void iKeyboard(unsigned char key)
 }
 
 /*
-	function iSpecialKeyboard() is called whenver user hits special keys like-
-	function keys, home, end, pg up, pg down, arraows etc. you have to use
-	appropriate constants to detect them. A list is:
-	GLUT_KEY_F1, GLUT_KEY_F2, GLUT_KEY_F3, GLUT_KEY_F4, GLUT_KEY_F5, GLUT_KEY_F6,
-	GLUT_KEY_F7, GLUT_KEY_F8, GLUT_KEY_F9, GLUT_KEY_F10, GLUT_KEY_F11, GLUT_KEY_F12,
-	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
-	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
+function iSpecialKeyboard() is called whenver user hits special keys like-
+function keys, home, end, pg up, pg down, arraows etc. you have to use
+appropriate constants to detect them. A list is:
+GLUT_KEY_F1, GLUT_KEY_F2, GLUT_KEY_F3, GLUT_KEY_F4, GLUT_KEY_F5, GLUT_KEY_F6,
+GLUT_KEY_F7, GLUT_KEY_F8, GLUT_KEY_F9, GLUT_KEY_F10, GLUT_KEY_F11, GLUT_KEY_F12,
+GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
+GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
 */
 void iSpecialKeyboard(unsigned char key)
 {
 
-	if(key == GLUT_KEY_UP)
+	if (key == GLUT_KEY_UP)
 	{
 		chy += 10;
 		if (chy >= 880) chy = 880;
@@ -129,7 +133,7 @@ void iSpecialKeyboard(unsigned char key)
 		if (chy <= 0) chy = 0;
 	}
 
-	if (key == GLUT_KEY_END	)
+	if (key == GLUT_KEY_END)
 	{
 		exit(0);
 	}
@@ -139,15 +143,15 @@ void iSpecialKeyboard(unsigned char key)
 
 void setall(){
 	for (int i = 9; i < slice; i++)
-		bg1[i] = slice_width * (i-9);  //this is a function that initializes the co-ordinates of Level 1 Background images
-							  //on x axis for Level 1 Background rendering
+		bg1[i] = slice_width * (i - 9);  //this is a function that initializes the co-ordinates of Level 1 Background images
+	//on x axis for Level 1 Background rendering
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
 	for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
-		bg1[i] -= bg_speed ;
-		if (bg1[i] <= 0) bg1[i] = bg_width ;//1616
-	}		
+		bg1[i] -= bg_speed;
+		if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+	}
 	chr_index = (chr_index + 1) % 7;
 
 }
