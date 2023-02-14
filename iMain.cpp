@@ -11,6 +11,18 @@
 #include <stdlib.h>
 #include "iGraphics.h"
 using namespace std;
+int chx = 500; //this variable stores the x co-ordinate of character images
+int chy = 480; //this variable stores the y co-ordinate of character images
+int chr_index = 0; //this variable stores the index of character images
+int chr_speed = 8;	 //this variable stores the speed of character rendering
+
+int bg_speed = 8;  //this variable stores the speed of background rendering
+int bg_width = 1600; //this variable stores the width of whole background
+
+int	slice = 60; //this variable stores the num of slice of background
+int slice_width = 32; //this variable stores the width of each slice of background
+
+
 
 double bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
@@ -19,8 +31,9 @@ char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen
 //this string is for Level 1 Background rendering
 
 char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player//plane_0003.bmp", "player//plane_0004.bmp", "player//plane_0005.bmp", "player//plane_0006.bmp", "player//plane_0007.bmp", "player//plane_0008.bmp"};
+//this string is for the character images
 
-int chx=500,chy=480,chr_index=0;
+
 
 int mposx,  mposy;
 /*
@@ -30,10 +43,10 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	for (int i = 9; i < 60; i++){
+	for (int i = 9; i < slice; i++){
 		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 	}
-	iShowBMP2(chx, chy, chr[chr_index],0);
+	iShowBMP2(chx, chy, chr[chr_index],0); //rendering the character images
 }
 
 /*
@@ -125,17 +138,17 @@ void iSpecialKeyboard(unsigned char key)
 //
 
 void setall(){
-	for (int i = 9; i < 60; i++)
-		bg1[i] = 32 * (i-9);  //this is a function that initializes the co-ordinates of Level 1 Background images
+	for (int i = 9; i < slice; i++)
+		bg1[i] = slice_width * (i-9);  //this is a function that initializes the co-ordinates of Level 1 Background images
 							  //on x axis for Level 1 Background rendering
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
-	for (int i = 9; i < 60; i++){			//on x axis for Level 1 Background rendering
-		bg1[i] -= 8;
-		if (bg1[i] <= 0) bg1[i] = 1600 ;//1616
+	for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
+		bg1[i] -= bg_speed ;
+		if (bg1[i] <= 0) bg1[i] = bg_width ;//1616
 	}		
-	chr_index = (chr_index + 1)%7;
+	chr_index = (chr_index + 1) % 7;
 
 }
 
