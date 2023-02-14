@@ -11,7 +11,7 @@ struct buttonCordinate
 	int x;
 	int y;
 }bCordinate[3];
-int mposx, mposy;
+int npox, nposy;
 char button[15][15] = {"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
 char button2[15][15]={"C:\Users\user\Pictures\5287527.jpg","C:\Users\user\Pictures\0212.jpg","C:\Users\user\Pictures\00000.jpg"}
 char homemenu[15] = "africa-2029610__480";
@@ -86,8 +86,8 @@ void iPassiveMouseMove(int mx,int my)
 {
 	//place your code here
 
- mposx = mx;
- mposy = my;
+ nposx = mx;
+ nposy = my;
  if(mx== 2){}        /*Something to do with mx*/
  else if(my== 2){}   /*Something to do with my*/
 
