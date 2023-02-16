@@ -49,7 +49,7 @@ void iDraw()
 	for (int i = 9; i < slice; i++){
 		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 	}
-	iShowBMP(0, 0, score_board[scr_index]);
+	iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
 }
 
@@ -100,12 +100,12 @@ void iKeyboard(unsigned char key)
 	if (key == 'w')
 	{
 		chy += 10;
-		if (chy >= 880) chy = 880;
-	}
+		if (chy >= 880) chy = 880; // for pressing "w" key each time 
+	}							   // the co-ordinates on Y axis increases 10 pixels
 	if (key == 's')
 	{
-		chy -= 10;
-		if (chy <= 0) chy = 0;
+		chy -= 10;				// for pressing "s" key each time 
+		if (chy <= 0) chy = 0;  //// the co-ordinates on Y axis decreases 10 pixels
 	}
 	//place your codes for other keys here
 }
@@ -124,18 +124,18 @@ void iSpecialKeyboard(unsigned char key)
 
 	if (key == GLUT_KEY_UP)
 	{
-		chy += 10;
-		if (chy >= 880) chy = 880;
+		chy += 10;						// for pressing "GLUT_KEY_UP" key each time 
+		if (chy >= 880) chy = 880;		// the co-ordinates on Y axis increases 10 pixels
 	}
 	if (key == GLUT_KEY_DOWN)
 	{
-		chy -= 10;
-		if (chy <= 0) chy = 0;
+		chy -= 10;				// for pressing "GLUT_KEY_DOWN" key each time 
+		if (chy <= 0) chy = 0;	//// the co-ordinates on Y axis decreases 10 pixels
 	}
 
 	if (key == GLUT_KEY_END)
 	{
-		exit(0);
+		exit(0); // for pressing "GLUT_KEY_END" key the game ends
 	}
 	//place your codes for other keys here
 }
