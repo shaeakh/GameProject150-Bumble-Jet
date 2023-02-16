@@ -52,7 +52,7 @@ void iDraw()
 	iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
 }
-
+//hi arif this is shaekh
 /*
 function iMouseMove() is called when the user presses and drags the mouse.
 (mx, my) is the position where the mouse pointer is.
