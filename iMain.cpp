@@ -11,6 +11,7 @@ Version: 2.0
 #include <stdlib.h>
 #include "iGraphics.h"
 using namespace std;
+
 int chx = 700; //this variable stores the x co-ordinate of character images
 int chy = 480; //this variable stores the y co-ordinate of character images
 int chr_index = 0; //this variable stores the index of character images
@@ -26,6 +27,7 @@ int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
 int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
+int GameState = -1; // this variable stores the homepage index
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -47,12 +49,18 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	for (int i = 9; i < slice; i++){
-		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
+	if (GameState == -1){
+		iShowBMP(0, 0, "menu//bg2.bmp");
 	}
-	iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
-	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
-	//iShowBMP(0, 0,"menu//bg2.bmp");
+	else if(GameState == 0){
+		for (int i = 9; i < slice; i++){
+			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
+		}
+		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
+		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
+	}
+	
+	
 }
 //hi arif this is shaekh
 /*
@@ -72,6 +80,26 @@ void iMouse(int button, int state, int mx, int my)
 {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
+		if (mx >= 43 && mx <= 557 && my >= 648 && my <= 746)
+			GameState = 0;
+		//place your codes here
+	}
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		if (mx >= 43 && mx <= 557 && my >= 512 && my <= 609)
+			GameState = 1;
+		//place your codes here
+	}
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		if (mx >= 43 && mx <= 557 && my >= 369 && my <= 466)
+			GameState = 2;
+		//place your codes here
+	}
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		if (mx >= 43 && mx <= 557 && my >= 219 && my <= 316)
+			exit(0);
 		//place your codes here
 	}
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
