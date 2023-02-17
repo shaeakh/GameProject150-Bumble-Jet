@@ -49,8 +49,8 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	if (GameState == -1){
-		iShowBMP(0, 0, "menu//bg2.bmp");
+	if (GameState == -1){					// if the GameState is 0 that means it will 
+		iShowBMP(0, 0, "menu//bg2.bmp");	// render the homepage 
 	}
 	else if(GameState == 0){
 		for (int i = 9; i < slice; i++){
@@ -167,6 +167,9 @@ void iSpecialKeyboard(unsigned char key)
 	{
 		exit(0); // for pressing "GLUT_KEY_END" key the game ends
 	}
+	if (key == GLUT_KEY_HOME){
+		GameState = -1;
+	}
 	//place your codes for other keys here
 }
 //
@@ -178,11 +181,20 @@ void setall(){
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
-	for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
-		bg1[i] -= bg_speed;
-		if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+	if (GameState == 0){
+		for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
+			bg1[i] -= bg_speed;
+			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+		}
+		chr_index = (chr_index + 1) % 7;
 	}
-	chr_index = (chr_index + 1) % 7;
+	
+	
+	//for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
+	//	bg1[i] -= bg_speed;
+	//	if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+	//}
+	//chr_index = (chr_index + 1) % 7;
 
 }
 
