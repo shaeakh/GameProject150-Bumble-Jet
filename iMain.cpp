@@ -11,6 +11,7 @@ Version: 2.0
 #include <stdlib.h>
 #include "iGraphics.h"
 using namespace std;
+
 int chx = 700; //this variable stores the x co-ordinate of character images
 int chy = 480; //this variable stores the y co-ordinate of character images
 int chr_index = 0; //this variable stores the index of character images
@@ -22,9 +23,11 @@ int bg_width = 1600; //this variable stores the width of whole background
 int	slice = 60; //this variable stores the num of slice of background
 int slice_width = 32; //this variable stores the width of each slice of background
 
-int scr_index = 0;
+int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
-double bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
+int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
+
+int GameState = -1; // this variable stores the homepage index
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -46,13 +49,26 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	for (int i = 9; i < slice; i++){
-		iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
+	if (GameState == -1){					// if the GameState is -1 that means the game is now paused
+		iShowBMP(0, 0, "menu//bg2.bmp");	// render the homepage 
 	}
-	iShowBMP(0, 0, score_board[scr_index]);
-	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
+	else if(GameState == 0){
+		for (int i = 9; i < slice; i++){
+			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
+		}
+		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
+		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
+	}
+
+	if (GameState == 1){
+		//place your drawing codes here
+	}
+
+	if (GameState == 2){
+		//place your drawing codes here
+	}		
 }
-//hi arif this is shaekh
+
 /*
 function iMouseMove() is called when the user presses and drags the mouse.
 (mx, my) is the position where the mouse pointer is.
@@ -68,9 +84,34 @@ function iMouse() is called when the user presses/releases the mouse.
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	if (GameState==-1)
 	{
-		//place your codes here
+
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+		{
+			if (mx >= 43 && mx <= 557 && my >= 648 && my <= 746)		// the condition for the option "PLAY GAME" in the homepage
+				GameState = 0;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "INSTRUCTION" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 512 && my <= 609)
+				GameState = 1;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "ABOUT" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 369 && my <= 466)
+				GameState = 2;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "EXIT" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 219 && my <= 316)
+				exit(0);
+			//place your codes here
+		}
+
 	}
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
@@ -100,12 +141,12 @@ void iKeyboard(unsigned char key)
 	if (key == 'w')
 	{
 		chy += 10;
-		if (chy >= 880) chy = 880;
-	}
+		if (chy >= 880) chy = 880; // for pressing "w" key each time 
+	}							   // the co-ordinates on Y axis increases 10 pixels
 	if (key == 's')
 	{
-		chy -= 10;
-		if (chy <= 0) chy = 0;
+		chy -= 10;				// for pressing "s" key each time 
+		if (chy <= 0) chy = 0;  //// the co-ordinates on Y axis decreases 10 pixels
 	}
 	//place your codes for other keys here
 }
@@ -124,18 +165,21 @@ void iSpecialKeyboard(unsigned char key)
 
 	if (key == GLUT_KEY_UP)
 	{
-		chy += 10;
-		if (chy >= 880) chy = 880;
+		chy += 10;						// for pressing "GLUT_KEY_UP" key each time 
+		if (chy >= 880) chy = 880;		// the co-ordinates on Y axis increases 10 pixels
 	}
 	if (key == GLUT_KEY_DOWN)
 	{
-		chy -= 10;
-		if (chy <= 0) chy = 0;
+		chy -= 10;				// for pressing "GLUT_KEY_DOWN" key each time 
+		if (chy <= 0) chy = 0;	//// the co-ordinates on Y axis decreases 10 pixels
 	}
 
 	if (key == GLUT_KEY_END)
 	{
-		exit(0);
+		exit(0); // for pressing "GLUT_KEY_END" key the game ends
+	}
+	if (key == GLUT_KEY_HOME){
+		GameState = -1; //you can go to the home and pause the game by clicking the "GLUT_KEY_HOME" button
 	}
 	//place your codes for other keys here
 }
@@ -148,12 +192,13 @@ void setall(){
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
-	for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
-		bg1[i] -= bg_speed;
-		if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+	if (GameState == 0){					// when the game is running
+		for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
+			bg1[i] -= bg_speed;
+			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
+		}
+		chr_index = (chr_index + 1) % 7;
 	}
-	chr_index = (chr_index + 1) % 7;
-
 }
 
 
