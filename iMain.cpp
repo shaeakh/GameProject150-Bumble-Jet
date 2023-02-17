@@ -22,9 +22,10 @@ int bg_width = 1600; //this variable stores the width of whole background
 int	slice = 60; //this variable stores the num of slice of background
 int slice_width = 32; //this variable stores the width of each slice of background
 
-int scr_index = 0;
+int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
-double bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
+int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
+
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -51,6 +52,7 @@ void iDraw()
 	}
 	iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 	iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
+	//iShowBMP(0, 0,"menu//bg2.bmp");
 }
 //hi arif this is shaekh
 /*
