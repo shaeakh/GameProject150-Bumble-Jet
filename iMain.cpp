@@ -49,7 +49,7 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	if (GameState == -1){					// if the GameState is 0 that means it will 
+	if (GameState == -1){					// if the GameState is -1 that means the game is now paused
 		iShowBMP(0, 0, "menu//bg2.bmp");	// render the homepage 
 	}
 	else if(GameState == 0){
@@ -78,29 +78,34 @@ function iMouse() is called when the user presses/releases the mouse.
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	if (GameState==-1)
 	{
-		if (mx >= 43 && mx <= 557 && my >= 648 && my <= 746)
-			GameState = 0;
-		//place your codes here
-	}
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		if (mx >= 43 && mx <= 557 && my >= 512 && my <= 609)
-			GameState = 1;
-		//place your codes here
-	}
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		if (mx >= 43 && mx <= 557 && my >= 369 && my <= 466)
-			GameState = 2;
-		//place your codes here
-	}
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		if (mx >= 43 && mx <= 557 && my >= 219 && my <= 316)
-			exit(0);
-		//place your codes here
+
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+		{
+			if (mx >= 43 && mx <= 557 && my >= 648 && my <= 746)		// the condition for the option "PLAY GAME" in the homepage
+				GameState = 0;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "INSTRUCTION" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 512 && my <= 609)
+				GameState = 1;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "ABOUT" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 369 && my <= 466)
+				GameState = 2;
+			//place your codes here
+		}
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "EXIT" in the homepage
+		{
+			if (mx >= 43 && mx <= 557 && my >= 219 && my <= 316)
+				exit(0);
+			//place your codes here
+		}
+
 	}
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
@@ -168,7 +173,7 @@ void iSpecialKeyboard(unsigned char key)
 		exit(0); // for pressing "GLUT_KEY_END" key the game ends
 	}
 	if (key == GLUT_KEY_HOME){
-		GameState = -1;
+		GameState = -1; //you can go to the home and pause the game by clicking the "GLUT_KEY_HOME" button
 	}
 	//place your codes for other keys here
 }
@@ -181,21 +186,13 @@ void setall(){
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
-	if (GameState == 0){
+	if (GameState == 0){					// when the game is running
 		for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
 			bg1[i] -= bg_speed;
 			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
 		}
 		chr_index = (chr_index + 1) % 7;
 	}
-	
-	
-	//for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
-	//	bg1[i] -= bg_speed;
-	//	if (bg1[i] <= 0) bg1[i] = bg_width;//1616
-	//}
-	//chr_index = (chr_index + 1) % 7;
-
 }
 
 
