@@ -12,6 +12,14 @@ Version: 2.0
 #include "iGraphics.h"
 using namespace std;
 
+//difficulty section
+int obs_gap = 240;
+int obs_hi = 750;
+int obs_lo = 500;
+// int bg_speed = 16;
+//int obs_speed = 8;
+
+
 int chx = 700; //this variable stores the x co-ordinate of character images
 int chy = 480; //this variable stores the y co-ordinate of character images
 int chr_index = 0; //this variable stores the index of character images
@@ -27,7 +35,17 @@ int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
 int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
+int obs1x = 900;
+int obs1y = 750; // highest
+int obs2x = 1333;
+int obs2y = 500; // lowest
+int obs3x = 1766; 
+int obs3y = 625; // mid
+int obs_speed = 10;
+
 int GameState = -1; // this variable stores the homepage index
+
+
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -59,24 +77,24 @@ void iDraw()
 		for (int i = 9; i < slice; i++){
 			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 		}
+
+		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle
+		iShowBMP2(obs1x, obs1y-obs_gap, "obstrcle1//2.bmp", 0);
+		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
+		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
+		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
+		iShowBMP2(obs3x, obs3y - obs_gap+100, "obstrcle1//6.bmp", 0);
+		
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
 
-		iShowBMP2(900, 700, "obstrcle1//1.bmp", 0);
-		iShowBMP2(900, 400, "obstrcle1//2.bmp",0);
-		iShowBMP2(1200, 700, "obstrcle1//3.bmp",0);
-		iShowBMP2(1200, 400, "obstrcle1//4.bmp",0);
+		
 
 	}
 
 	if (GameState == 1){      
 		//place your drawing codes here
 		iShowBMP(0, 0, "menu//instruction.bmp");
-		
-		//iShowBMP2(600, 700, "obstrcle1//1.bmp", 0);
-		//iShowBMP2(300, 200, "obstrcle1//2.bmp",0);
-		//iShowBMP2(600, 50, "obstrcle1//3.bmp", 0);
-		//iShowBMP2(600, 200, "obstrcle1//4.bmp",255);
 	}
 
 	if (GameState == 2){
@@ -214,6 +232,13 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
 		}
 		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
+		obs1x = obs1x - obs_speed;
+		if (obs1x <= 300) obs1x = 1600;
+		obs2x = obs2x - obs_speed;
+		if (obs2x <= 300) obs2x = 1600;
+		obs3x = obs3x - obs_speed;
+		if (obs3x <= 300) obs3x = 1600;
+
 
 	}
 }
