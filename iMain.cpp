@@ -39,6 +39,9 @@ char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player/
 char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp", "scoreboard//Slide3.bmp", "scoreboard//Slide4.bmp", "scoreboard//Slide5.bmp", "scoreboard//Slide6.bmp", "scoreboard//Slide7.bmp", "scoreboard//Slide8.bmp", "scoreboard//Slide9.bmp", "scoreboard//Slide10.bmp",
 "scoreboard//Slide11.bmp", "scoreboard//Slide12.bmp", "scoreboard//Slide13.bmp", "scoreboard//Slide14.bmp", "scoreboard//Slide15.bmp", "scoreboard//Slide16.bmp", "scoreboard//Slide17.bmp", "scoreboard//Slide18.bmp", "scoreboard//Slide19.bmp", "scoreboard//Slide20.bmp", 
 "scoreboard//Slide21.bmp", "scoreboard//Slide22.bmp", "scoreboard//Slide23.bmp", "scoreboard//Slide24.bmp", "scoreboard//Slide25.bmp", "scoreboard//Slide26.bmp", "scoreboard//Slide27.bmp", "scoreboard//Slide28.bmp", "scoreboard//Slide29.bmp", "scoreboard//Slide30.bmp" };
+//this string is for the scoreboard
+
+//char obs[30][35]
 
 
 int mposx, mposy;
@@ -50,22 +53,35 @@ void iDraw()
 	//place your drawing codes here
 	iClear();
 	if (GameState == -1){					// if the GameState is -1 that means the game is now paused
-		iShowBMP(0, 0, "menu//bg2.bmp");	// render the homepage 
+		iShowBMP(0, 0, "menu//bg.bmp");	// render the homepage 
 	}
-	else if(GameState == 0){
+	else if(GameState == 0){			
 		for (int i = 9; i < slice; i++){
 			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 		}
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
+
+		iShowBMP2(900, 700, "obstrcle1//1.bmp", 0);
+		iShowBMP2(900, 400, "obstrcle1//2.bmp",0);
+		iShowBMP2(1200, 700, "obstrcle1//3.bmp",0);
+		iShowBMP2(1200, 400, "obstrcle1//4.bmp",0);
+
 	}
 
-	if (GameState == 1){
+	if (GameState == 1){      
 		//place your drawing codes here
+		iShowBMP(0, 0, "menu//instruction.bmp");
+		
+		//iShowBMP2(600, 700, "obstrcle1//1.bmp", 0);
+		//iShowBMP2(300, 200, "obstrcle1//2.bmp",0);
+		//iShowBMP2(600, 50, "obstrcle1//3.bmp", 0);
+		//iShowBMP2(600, 200, "obstrcle1//4.bmp",255);
 	}
 
 	if (GameState == 2){
 		//place your drawing codes here
+		iShowBMP(0, 0, "menu//about.bmp");
 	}		
 }
 
@@ -89,25 +105,25 @@ void iMouse(int button, int state, int mx, int my)
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		{
-			if (mx >= 43 && mx <= 557 && my >= 648 && my <= 746)		// the condition for the option "PLAY GAME" in the homepage
+			if (mx >= 43 && mx <= 557 && my >= 551 && my <= 648)		// the condition for the option "PLAY GAME" in the homepage
 				GameState = 0;
 			//place your codes here
 		}
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "INSTRUCTION" in the homepage
 		{
-			if (mx >= 43 && mx <= 557 && my >= 512 && my <= 609)
+			if (mx >= 43 && mx <= 557 && my >= 414 && my <= 512)
 				GameState = 1;
 			//place your codes here
 		}
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "ABOUT" in the homepage
 		{
-			if (mx >= 43 && mx <= 557 && my >= 369 && my <= 466)
+			if (mx >= 43 && mx <= 557 && my >= 271 && my <= 369)
 				GameState = 2;
 			//place your codes here
 		}
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "EXIT" in the homepage
 		{
-			if (mx >= 43 && mx <= 557 && my >= 219 && my <= 316)
+			if (mx >= 43 && mx <= 557 && my >= 123 && my <= 220)
 				exit(0);
 			//place your codes here
 		}
@@ -192,12 +208,13 @@ void setall(){
 }
 
 void change(){								// this function updates the co-ordinates of Level 1 Background images
-	if (GameState == 0){					// when the game is running
+	if (GameState == 0){  					// when the game is running
 		for (int i = 9; i < slice; i++){			//on x axis for Level 1 Background rendering
 			bg1[i] -= bg_speed;
 			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
 		}
-		chr_index = (chr_index + 1) % 7;
+		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
+
 	}
 }
 
@@ -207,6 +224,6 @@ int main()
 	setall();
 	iSetTimer(25, change);
 	//place your own initialization codes here.
-	iInitialize(1600, 960, "demooo");
+	iInitialize(1600, 960, "Bumbble Jet");
 	return 0;
 }
