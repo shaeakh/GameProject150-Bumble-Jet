@@ -244,9 +244,7 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 }
 
 void collisioncheck(){
-	if ((chx >= obs1x && chx <= obs1x + 100) && ((chy >= obs1y && chy <= obs1y + 183) || (chy >= obs1y - obs_gap && chy <= obs1y obs_gap + 183))){
-		GameState = -1;
-	}
+	
 }
 
 int main()
