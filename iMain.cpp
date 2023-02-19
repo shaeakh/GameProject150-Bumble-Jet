@@ -45,14 +45,14 @@ int obs_speed = 10;
 
 int GameState = -1; // this variable stores the homepage index
 
-int play_x = 43;
-int play_y = 551;
-int ins_x = 43;
-int ins_y = 414;
-int abt_x = 43;
-int abt_y = 271;
-int exit_x = 43;
-int exit_y = 123;
+int play_x = 37;
+int play_y = 407;
+int ins_x = 37;
+int ins_y = 305;
+int abt_x = 37;
+int abt_y = 198;
+int exit_x = 37;
+int exit_y = 87;
 
 
 
@@ -254,6 +254,6 @@ int main()
 	iSetTimer(25, change);
 	iSetTimer(5, collisioncheck);
 	//place your own initialization codes here.
-	iInitialize(1600, 960, "Bumbble Jet");
+	iInitialize(1280, 720, "Bumbble Jet");
 	return 0;
 }
