@@ -13,7 +13,7 @@ Version: 2.0
 using namespace std;
 
 //difficulty section
-int obs_gap = 240;
+int obs_gap = 220;
 int obs_hi = 750;
 int obs_lo = 500;
 // int bg_speed = 16;
@@ -35,12 +35,12 @@ int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
 int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
-int obs1x = 900;//100*183
-int obs1y = 750; // highest
-int obs2x = 1333;//120*134
-int obs2y = 500; // lowest
-int obs3x = 1766;//130*60  
-int obs3y = 625; // mid 
+int obs1x = 533;//100*183
+int obs1y = 580; // highest
+int obs3x = 916;//120*134
+int obs3y = 300; // lowest
+int obs2x = 1300;//130*60  
+int obs2y = 415; // mid 
 int obs_speed = 10;
 
 int GameState = -1; // this variable stores the homepage index
@@ -136,14 +136,14 @@ void iMouse(int button, int state, int mx, int my)
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		{
-			if (mx >= play_x && mx <= play_x + 514 && my >= play_y && my <= play_y + 97)		// the condition for the option "PLAY GAME" in the homepage
+			if (mx >= play_x && mx <= play_x + 386 && my >= play_y && my <= play_y + 76)		// the condition for the option "PLAY GAME" in the homepage
 				GameState = 0;
 			//place your codes here
-			if (mx >= ins_x && mx <= ins_x + 514 && my >= ins_y && my <= ins_y + 97)
+			if (mx >= ins_x && mx <= ins_x + 386 && my >= ins_y && my <= ins_y + 76)
 				GameState = 1;
-			if (mx >= abt_x && mx <= abt_x + 514 && my >= abt_y && my <= abt_y + 97)
+			if (mx >= abt_x && mx <= abt_x + 386 && my >= abt_y && my <= abt_y + 76)
 				GameState = 2;
-			if (mx >= exit_x && mx <= exit_x + 514 && my >= exit_y && my <= exit_y + 97)
+			if (mx >= exit_x && mx <= exit_x + 386 && my >= exit_y && my <= exit_y + 76)
 				exit(0);
 
 		}
@@ -233,12 +233,13 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
 		}
 		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
+		
 		obs1x = obs1x - obs_speed;
-		if (obs1x <= 300) obs1x = 1600;
+		if (obs1x <= 150) obs1x = 1280;
 		obs2x = obs2x - obs_speed;
-		if (obs2x <= 300) obs2x = 1600;
+		if (obs2x <= 150) obs2x = 1280;
 		obs3x = obs3x - obs_speed;
-		if (obs3x <= 300) obs3x = 1600;
+		if (obs3x <= 150) obs3x = 1280;
 
 
 	}
