@@ -136,7 +136,7 @@ void iMouse(int button, int state, int mx, int my)
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		{
-			if (mx >= play_x && mx <= play_x + 514 && my >= play_y && my <= play_y+97)		// the condition for the option "PLAY GAME" in the homepage
+			if (mx >= play_x && mx <= play_x + 514 && my >= play_y && my <= play_y + 97)		// the condition for the option "PLAY GAME" in the homepage
 				GameState = 0;
 			//place your codes here
 			if (mx >= ins_x && mx <= ins_x + 514 && my >= ins_y && my <= ins_y + 97)
@@ -145,11 +145,12 @@ void iMouse(int button, int state, int mx, int my)
 				GameState = 2;
 			if (mx >= exit_x && mx <= exit_x + 514 && my >= exit_y && my <= exit_y + 97)
 				exit(0);
-			
+
 		}
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-	{
-		//place your codes here
+		if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+		{
+			//place your codes here
+		}
 	}
 }
 /*iPassiveMouseMove is called to detect and use
