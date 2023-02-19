@@ -35,12 +35,12 @@ int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
 int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
 
-int obs1x = 900;
+int obs1x = 900;//100*183
 int obs1y = 750; // highest
-int obs2x = 1333;
+int obs2x = 1333;//120*134
 int obs2y = 500; // lowest
-int obs3x = 1766; 
-int obs3y = 625; // mid
+int obs3x = 1766;//130*60  
+int obs3y = 625; // mid 
 int obs_speed = 10;
 
 int GameState = -1; // this variable stores the homepage index
@@ -243,11 +243,17 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 	}
 }
 
+void collisioncheck(){
+	if ((chx >= obs1x && chx <= obs1x + 100) && ((chy >= obs1y && chy <= obs1y + 183) || (chy >= obs1y - obs_gap && chy <= obs1y obs_gap + 183))){
+		GameState = -1;
+	}
+}
 
 int main()
 {
 	setall();
 	iSetTimer(25, change);
+	iSetTimer(5, collisioncheck);
 	//place your own initialization codes here.
 	iInitialize(1600, 960, "Bumbble Jet");
 	return 0;
