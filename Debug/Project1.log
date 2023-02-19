@@ -1,13 +1,25 @@
-﻿Build started 2/19/2023 11:06:40 AM.
+﻿Build started 2/20/2023 12:30:51 AM.
      1>Project "C:\Users\shaeakh\Documents\GitHub\Game-Project-Bumble-Jet\Game-Project-Bumble-Jet\Project1\Project1\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt iMain.cpp
          iMain.cpp
-     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(247): error C2146: syntax error : missing ')' before identifier 'obs_gap'
-     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(247): error C2059: syntax error : ')'
-     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(247): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(159): error C2601: 'iPassiveMouseMove' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(174): error C2601: 'iKeyboard' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(198): error C2601: 'iSpecialKeyboard' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(222): error C2601: 'setall' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(228): error C2601: 'change' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(246): error C2601: 'collisioncheck' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(251): error C2601: 'main' : local function definitions are illegal
+                 c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133): this line contains a '{' which has not yet been matched
+     1>c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(259): fatal error C1075: end of file found before the left brace '{' at 'c:\users\shaeakh\documents\github\game-project-bumble-jet\game-project-bumble-jet\project1\project1\project1\imain.cpp(133)' was matched
      1>Done Building Project "C:\Users\shaeakh\Documents\GitHub\Game-Project-Bumble-Jet\Game-Project-Bumble-Jet\Project1\Project1\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.69
+Time Elapsed 00:00:00.67

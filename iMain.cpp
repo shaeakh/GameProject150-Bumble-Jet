@@ -45,6 +45,15 @@ int obs_speed = 10;
 
 int GameState = -1; // this variable stores the homepage index
 
+int play_x = 43;
+int play_y = 551;
+int ins_x = 43;
+int ins_y = 414;
+int abt_x = 43;
+int abt_y = 271;
+int exit_x = 43;
+int exit_y = 123;
+
 
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
@@ -55,7 +64,7 @@ char chr[8][30] = { "player//plane_0001.bmp", "player//plane_0002.bmp", "player/
 //this string is for the character images
 
 char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp", "scoreboard//Slide3.bmp", "scoreboard//Slide4.bmp", "scoreboard//Slide5.bmp", "scoreboard//Slide6.bmp", "scoreboard//Slide7.bmp", "scoreboard//Slide8.bmp", "scoreboard//Slide9.bmp", "scoreboard//Slide10.bmp",
-"scoreboard//Slide11.bmp", "scoreboard//Slide12.bmp", "scoreboard//Slide13.bmp", "scoreboard//Slide14.bmp", "scoreboard//Slide15.bmp", "scoreboard//Slide16.bmp", "scoreboard//Slide17.bmp", "scoreboard//Slide18.bmp", "scoreboard//Slide19.bmp", "scoreboard//Slide20.bmp", 
+"scoreboard//Slide11.bmp", "scoreboard//Slide12.bmp", "scoreboard//Slide13.bmp", "scoreboard//Slide14.bmp", "scoreboard//Slide15.bmp", "scoreboard//Slide16.bmp", "scoreboard//Slide17.bmp", "scoreboard//Slide18.bmp", "scoreboard//Slide19.bmp", "scoreboard//Slide20.bmp",
 "scoreboard//Slide21.bmp", "scoreboard//Slide22.bmp", "scoreboard//Slide23.bmp", "scoreboard//Slide24.bmp", "scoreboard//Slide25.bmp", "scoreboard//Slide26.bmp", "scoreboard//Slide27.bmp", "scoreboard//Slide28.bmp", "scoreboard//Slide29.bmp", "scoreboard//Slide30.bmp" };
 //this string is for the scoreboard
 
@@ -71,28 +80,32 @@ void iDraw()
 	//place your drawing codes here
 	iClear();
 	if (GameState == -1){					// if the GameState is -1 that means the game is now paused
-		iShowBMP(0, 0, "menu//bg.bmp");	// render the homepage 
+		iShowBMP(0, 0, "menu//bg.bmp");// render the homepage 
+		iShowBMP2(play_x, play_y, "menu//1.bmp", 0);
+		iShowBMP2(ins_x, ins_y, "menu//2.bmp", 0);
+		iShowBMP2(abt_x, abt_y, "menu//3.bmp", 0);
+		iShowBMP2(exit_x, exit_y, "menu//4.bmp", 0);
 	}
-	else if(GameState == 0){			
+	else if (GameState == 0){
 		for (int i = 9; i < slice; i++){
 			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 		}
 
 		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle
-		iShowBMP2(obs1x, obs1y-obs_gap, "obstrcle1//2.bmp", 0);
+		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
 		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
-		iShowBMP2(obs3x, obs3y - obs_gap+100, "obstrcle1//6.bmp", 0);
-		
+		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
+
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
 
-		
+
 
 	}
 
-	if (GameState == 1){      
+	if (GameState == 1){
 		//place your drawing codes here
 		iShowBMP(0, 0, "menu//instruction.bmp");
 	}
@@ -100,7 +113,7 @@ void iDraw()
 	if (GameState == 2){
 		//place your drawing codes here
 		iShowBMP(0, 0, "menu//about.bmp");
-	}		
+	}
 }
 
 /*
@@ -118,35 +131,22 @@ function iMouse() is called when the user presses/releases the mouse.
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if (GameState==-1)
+	if (GameState == -1)
 	{
 
 		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		{
-			if (mx >= 43 && mx <= 557 && my >= 551 && my <= 648)		// the condition for the option "PLAY GAME" in the homepage
+			if (mx >= play_x && mx <= play_x + 514 && my >= play_y && my <= play_y+97)		// the condition for the option "PLAY GAME" in the homepage
 				GameState = 0;
 			//place your codes here
-		}
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "INSTRUCTION" in the homepage
-		{
-			if (mx >= 43 && mx <= 557 && my >= 414 && my <= 512)
+			if (mx >= ins_x && mx <= ins_x + 514 && my >= ins_y && my <= ins_y + 97)
 				GameState = 1;
-			//place your codes here
-		}
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "ABOUT" in the homepage
-		{
-			if (mx >= 43 && mx <= 557 && my >= 271 && my <= 369)
+			if (mx >= abt_x && mx <= abt_x + 514 && my >= abt_y && my <= abt_y + 97)
 				GameState = 2;
-			//place your codes here
-		}
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)			// the condition for the option "EXIT" in the homepage
-		{
-			if (mx >= 43 && mx <= 557 && my >= 123 && my <= 220)
+			if (mx >= exit_x && mx <= exit_x + 514 && my >= exit_y && my <= exit_y + 97)
 				exit(0);
-			//place your codes here
+			
 		}
-
-	}
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
 		//place your codes here
@@ -244,9 +244,7 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 }
 
 void collisioncheck(){
-	if ((chx >= obs1x && chx <= obs1x + 100) && ((chy >= obs1y && chy <= obs1y + 183) || (chy >= obs1y - obs_gap && chy <= obs1y obs_gap + 183))){
-		GameState = -1;
-	}
+
 }
 
 int main()
