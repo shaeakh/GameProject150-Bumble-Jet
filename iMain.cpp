@@ -146,6 +146,7 @@ void iMouse(int button, int state, int mx, int my)
 				GameState = 2;
 			if (mx >= exit_x && mx <= exit_x + 386 && my >= exit_y && my <= exit_y + 76)
 				exit(0);
+			//PlaySound("music\\click.wav", NULL,SND_ASYNC);
 
 		}
 		if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
@@ -247,7 +248,26 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 }
 
 void collisioncheck(){
+	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy + 83 <= obs1y + 133){
+		GameState = -1;
+	}
+	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
+		GameState = -1;
+	}
+	if (chx + 100 >= obs2x+20 && chx + 100 <= obs2x + 100 && chy + 83 >= obs2y && chy + 83 <= obs2y + 134){
+		//GameState = -1;
+	}
+	if (chx + 100 >= obs2x+20 && chx + 100 <= obs2x + 100 && chy >= obs2y - obs_gap && chy <= obs2y - obs_gap + 134){
+		//GameState = -1;
+	}
+	if (chx + 100 >= obs3x && chx + 100 <= obs3x + 130 && chy + 83 >= obs3y && chy + 83 <= obs3y + 77){
+		GameState = -1;
+	}
+	if (chx + 100 >= obs3x && chx + 100 <= obs3x + 130 && chy >= obs3y - obs_gap && chy <= obs3y - obs_gap + 77){
+		GameState = -1;
+	}
 
+	
 }
 
 int main()
