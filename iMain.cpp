@@ -14,7 +14,7 @@ using namespace std;
 
 //difficulty section
 int obs_gap = 220;
-int obs_hi = 750;
+int obs_hi = 750; //
 int obs_lo = 500;
 // int bg_speed = 16;
 //int obs_speed = 8;
