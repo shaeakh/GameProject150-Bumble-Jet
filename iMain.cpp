@@ -13,7 +13,7 @@ Version: 2.0
 using namespace std;
 
 //difficulty section
-int obs_gap = 220;
+int obs_gap = 250;
 int obs_hi = 750; //
 int obs_lo = 500;
 // int bg_speed = 16;
@@ -33,14 +33,14 @@ int slice_width = 32; //this variable stores the width of each slice of backgrou
 
 int scr_index = 0; // this variable changes and makes it scoreboard rendering
 
-int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )
+int bg1[60]; // this array stores the co-ordinates of Level 1 Background images ( only on X AXIS )I9BH
 
-int obs1x = 533;//100*183
-int obs1y = 580; // highest
-int obs3x = 916;//120*134
-int obs3y = 300; // lowest
-int obs2x = 1300;//130*60  
-int obs2y = 415; // mid 
+int obs1x = 640;  //100*183
+int obs1y = 550;  // highest
+int obs3x = 1280;//120*134
+int obs3y = 320; // lowest
+int obs2x = 1920;//130*60  
+int obs2y = 390; // mid 
 int obs_speed = 10;
 
 int GameState = -1; // this variable stores the homepage index
@@ -53,6 +53,8 @@ int abt_x = 37;
 int abt_y = 198;
 int exit_x = 37;
 int exit_y = 87;
+
+int coin_index = 0;
 
 bool play_music = true;
 
@@ -67,6 +69,8 @@ char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp",
 "scoreboard//Slide11.bmp", "scoreboard//Slide12.bmp", "scoreboard//Slide13.bmp", "scoreboard//Slide14.bmp", "scoreboard//Slide15.bmp", "scoreboard//Slide16.bmp", "scoreboard//Slide17.bmp", "scoreboard//Slide18.bmp", "scoreboard//Slide19.bmp", "scoreboard//Slide20.bmp",
 "scoreboard//Slide21.bmp", "scoreboard//Slide22.bmp", "scoreboard//Slide23.bmp", "scoreboard//Slide24.bmp", "scoreboard//Slide25.bmp", "scoreboard//Slide26.bmp", "scoreboard//Slide27.bmp", "scoreboard//Slide28.bmp", "scoreboard//Slide29.bmp", "scoreboard//Slide30.bmp" };
 //this string is for the scoreboard
+
+char coin[4][15] = { "coin//1.bmp", "coin//2.bmp", "coin//3.bmp", "coin//4.bmp", };
 
 //char obs[30][35]
 
@@ -84,18 +88,25 @@ void iDraw()
 		iShowBMP2(play_x, play_y, "menu//1.bmp", 0);
 		iShowBMP2(ins_x, ins_y, "menu//2.bmp", 0);
 		iShowBMP2(abt_x, abt_y, "menu//3.bmp", 0);
-		iShowBMP2(exit_x, exit_y, "menu//4.bmp", 0);
+		iShowBMP2(exit_x, exit_y, "menu//4.bmp", 0);			// 
 	}
 	else if (GameState == 0){
 		for (int i = 9; i < slice; i++){
 			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 		}
 
-		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle
+		
+		
+		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle  
+		iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
 		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
+		
 		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
+		iShowBMP2(obs2x + 20, obs2y - 100, coin[coin_index], 0);
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
+
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
+		iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
 		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
 
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
@@ -237,34 +248,48 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
 		
 		obs1x = obs1x - obs_speed;
-		if (obs1x <= 150) obs1x = 1280;
+		if (obs1x <= 150){
+			obs1y = 320 + (rand() % 230);
+			obs1x = 1920;
+		} 
 		obs2x = obs2x - obs_speed;
-		if (obs2x <= 150) obs2x = 1280;
+		if (obs2x <= 150){
+			obs2x = 1920;
+			obs2y = 320 + (rand() % 230);
+		}
 		obs3x = obs3x - obs_speed;
-		if (obs3x <= 150) obs3x = 1280;
+		if (obs3x <= 150){
+			obs3x = 1920;
+			obs3y = 320 + (rand() % 230);
+		}
 
-
+		
 	}
 }
 
+
+void cng_coin(){
+	coin_index = (coin_index + 1) % 4;
+}
+
 void collisioncheck(){
-	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy + 83 <= obs1y + 133){
+	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
 		GameState = -1;
 	}
 	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
-		GameState = -1;
-	}
-	if (chx + 100 >= obs2x+20 && chx + 100 <= obs2x + 100 && chy + 83 >= obs2y && chy + 83 <= obs2y + 134){
+	//	GameState = -1;
+	} 
+	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y && chy <= obs2y + 134){
 		//GameState = -1;
 	}
-	if (chx + 100 >= obs2x+20 && chx + 100 <= obs2x + 100 && chy >= obs2y - obs_gap && chy <= obs2y - obs_gap + 134){
+	if (chx + 100 >= obs2x + 20 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
 		//GameState = -1;
 	}
 	if (chx + 100 >= obs3x && chx + 100 <= obs3x + 130 && chy + 83 >= obs3y && chy + 83 <= obs3y + 77){
-		GameState = -1;
+		//GameState = -1;
 	}
 	if (chx + 100 >= obs3x && chx + 100 <= obs3x + 130 && chy >= obs3y - obs_gap && chy <= obs3y - obs_gap + 77){
-		GameState = -1;
+		//hhhGameState = -1;
 	}
 
 	
@@ -275,6 +300,7 @@ int main()
 	setall();
 	
 	iSetTimer(25, change);
+	iSetTimer(60, cng_coin);
 	iSetTimer(5, collisioncheck);
 	PlaySound("music\\bgmusic.wav", NULL, SND_LOOP | SND_ASYNC);
 	//place your own initialization codes here.
