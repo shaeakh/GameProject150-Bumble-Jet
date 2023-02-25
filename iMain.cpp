@@ -55,8 +55,12 @@ int exit_x = 37;
 int exit_y = 87;
 
 int coin_index = 0;
+bool c1 = true;
+bool c2 = true;
+bool c3 = true;
 
-bool play_music = true;
+bool bg_music = true;
+bool lvl_music = true;
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -97,16 +101,16 @@ void iDraw()
 
 		
 		
-		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle  
-		iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
+		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle 
+		if (c1 == true) iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
 		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
 		
 		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
-		iShowBMP2(obs2x + 20, obs2y - 100, coin[coin_index], 0);
+		if (c2 == true) iShowBMP2(obs2x + 20, obs2y - 100, coin[coin_index], 0);
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
 
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
-		iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
+		if (c3 == true) iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
 		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
 
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
@@ -251,16 +255,19 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 		if (obs1x <= 150){
 			obs1y = 320 + (rand() % 230);
 			obs1x = 1920;
+			c1 = true;
 		} 
 		obs2x = obs2x - obs_speed;
 		if (obs2x <= 150){
 			obs2x = 1920;
 			obs2y = 320 + (rand() % 230);
+			c2 = true;
 		}
 		obs3x = obs3x - obs_speed;
 		if (obs3x <= 150){
 			obs3x = 1920;
 			obs3y = 320 + (rand() % 230);
+			c3 = true;
 		}
 
 		
@@ -274,7 +281,7 @@ void cng_coin(){
 
 void collisioncheck(){
 	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
-		GameState = -1;
+		//GameState = -1;
 	}
 	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
 	//	GameState = -1;
@@ -292,7 +299,28 @@ void collisioncheck(){
 		//hhhGameState = -1;
 	}
 
-	
+
+	//collisions for coins
+	if (chx + 100 >= (obs1x)+35 && chx + 100 <= (obs1x)+80 && chy + 83 >= (obs1y - 100) + 80 && chy + 83 <= (obs1y - 100) + 100 && c1 == true){
+		scr_index++;
+		c1 = false;
+	}
+	if (chx + 100 >= (obs2x + 20) + 35 && chx + 100 <= (obs2x + 20) + 80 && chy + 83 >= (obs2y - 100) + 80 && chy + 83 <= (obs2y - 100) + 100 && c2 == true){
+		scr_index++;
+		c2 = false;
+	}
+	if (chx + 100 >= (obs3x + 30) + 35 && chx + 100 <= (obs3x + 30) + 80 && chy + 83 >= (obs3y - 85) + 80 && chy + 83 <= (obs3y - 85) + 100 && c3 == true){
+		scr_index++;
+		c3 = false;
+	}
+
+
+/*	if (scr_index + 1 % 10 == 0){
+		bg_music = false;
+		PlaySound("music\\bgmusic.wav", NULL, SND_ASYNC);
+		bg_music = true;
+	}
+*/
 }
 
 int main()
@@ -302,7 +330,10 @@ int main()
 	iSetTimer(25, change);
 	iSetTimer(60, cng_coin);
 	iSetTimer(5, collisioncheck);
+
+	if (bg_music==true)
 	PlaySound("music\\bgmusic.wav", NULL, SND_LOOP | SND_ASYNC);
+	
 	//place your own initialization codes here.
 	iInitialize(1280, 720, "Bumbble Jet");
 	
