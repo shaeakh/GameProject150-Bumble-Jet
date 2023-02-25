@@ -130,6 +130,10 @@ void iDraw()
 	}
 	if (GameState == 2){
 		//place your drawing codes here
+		iShowBMP(0, 0, "menu//about.bmp");
+	}
+	if (GameState == 3){
+		//place your drawing codes here
 		iShowBMP(0, 0, g_over[scr_index]);
 	}
 }
@@ -204,7 +208,7 @@ void iKeyboard(unsigned char key)
 		if (chy <= 0) chy = 0;  //// the co-ordinates on Y axis decreases 10 pixels
 	}
 	if (key == 'f'){
-		GameState = 2;
+		GameState = 3;
 	}
 	//place your codes for other keys here
 }
