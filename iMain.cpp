@@ -59,7 +59,7 @@ bool c1 = true;
 bool c2 = true;
 bool c3 = true;
 
-bool bg_music = true;
+int bg_music = 0;
 bool lvl_music = true;
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
@@ -75,6 +75,10 @@ char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp",
 //this string is for the scoreboard
 
 char coin[4][15] = { "coin//1.bmp", "coin//2.bmp", "coin//3.bmp", "coin//4.bmp", };
+
+char g_over[30][15] = { "over//1.bmp", "over//2.bmp", "over//3.bmp", "over//4.bmp", "over//5.bmp", "over//6.bmp", "over//7.bmp", "over//8.bmp", "over//9.bmp", "over//10.bmp",
+"over//11.bmp", "over//12.bmp", "over//13.bmp", "over//14.bmp", "over//15.bmp", "over//16.bmp", "over//17.bmp", "over//18.bmp", "over//19.bmp", "over//20.bmp",
+"over//21.bmp", "over//22.bmp", "over//23.bmp", "over//24.bmp", "over//25.bmp", "over//26.bmp", "over//27.bmp", "over//28.bmp", "over//29.bmp", "over//30.bmp", };
 
 //char obs[30][35]
 
@@ -124,12 +128,10 @@ void iDraw()
 		//place your drawing codes here
 		iShowBMP(0, 0, "menu//instruction.bmp");
 	}
-
 	if (GameState == 2){
 		//place your drawing codes here
-		iShowBMP(0, 0, "menu//about.bmp");
+		iShowBMP(0, 0, g_over[scr_index]);
 	}
-	
 }
 
 /*
@@ -167,6 +169,7 @@ void iMouse(int button, int state, int mx, int my)
 		if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 		{
 			//place your codes here
+			
 		}
 	}
 }
@@ -199,6 +202,9 @@ void iKeyboard(unsigned char key)
 	{
 		chy -= 10;				// for pressing "s" key each time 
 		if (chy <= 0) chy = 0;  //// the co-ordinates on Y axis decreases 10 pixels
+	}
+	if (key == 'f'){
+		GameState = 2;
 	}
 	//place your codes for other keys here
 }
@@ -298,29 +304,22 @@ void collisioncheck(){
 	if (chx + 100 >= obs3x && chx + 100 <= obs3x + 130 && chy >= obs3y - obs_gap && chy <= obs3y - obs_gap + 77){
 		//hhhGameState = -1;
 	}
-
-
+}
+void cln_coin(){
 	//collisions for coins
-	if (chx + 100 >= (obs1x)+35 && chx + 100 <= (obs1x)+80 && chy + 83 >= (obs1y - 100) + 80 && chy + 83 <= (obs1y - 100) + 100 && c1 == true){
-		scr_index++;
+	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 100) + 75 && chy <= (obs1y - 100) + 105 && c1 == true){
+		scr_index = (scr_index + 1) % 29;
 		c1 = false;
+		//PlaySound("music\\lvl_end.wav", NULL, SND_ASYNC);
 	}
-	if (chx + 100 >= (obs2x + 20) + 35 && chx + 100 <= (obs2x + 20) + 80 && chy + 83 >= (obs2y - 100) + 80 && chy + 83 <= (obs2y - 100) + 100 && c2 == true){
-		scr_index++;
+	else if (chx + 100 >= (obs2x + 20) + 30 && chx + 100 <= (obs2x + 20) + 85 && chy + 83 >= (obs2y - 100) + 75 && chy <= (obs2y - 100) + 105 && c2 == true){
+		scr_index = (scr_index + 1) % 29;
 		c2 = false;
 	}
-	if (chx + 100 >= (obs3x + 30) + 35 && chx + 100 <= (obs3x + 30) + 80 && chy + 83 >= (obs3y - 85) + 80 && chy + 83 <= (obs3y - 85) + 100 && c3 == true){
-		scr_index++;
+	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 85) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
+		scr_index = (scr_index + 1) % 29;
 		c3 = false;
 	}
-
-
-/*	if (scr_index + 1 % 10 == 0){
-		bg_music = false;
-		PlaySound("music\\bgmusic.wav", NULL, SND_ASYNC);
-		bg_music = true;
-	}
-*/
 }
 
 int main()
@@ -330,10 +329,13 @@ int main()
 	iSetTimer(25, change);
 	iSetTimer(60, cng_coin);
 	iSetTimer(5, collisioncheck);
+	iSetTimer(5, cln_coin);
 
-	if (bg_music==true)
+	//if (bg_music==true)
 	PlaySound("music\\bgmusic.wav", NULL, SND_LOOP | SND_ASYNC);
 	
+	
+
 	//place your own initialization codes here.
 	iInitialize(1280, 720, "Bumbble Jet");
 	
