@@ -20,8 +20,8 @@ int obs_lo = 500;
 //int obs_speed = 8;
 
 
-int chx = 700; //this variable stores the x co-ordinate of character images
-int chy = 480; //this variable stores the y co-ordinate of character images
+int chx = 640; //this variable stores the x co-ordinate of character images
+int chy = 360; //this variable stores the y co-ordinate of character images
 int chr_index = 0; //this variable stores the index of character images
 int chr_speed = 8;	 //this variable stores the speed of character rendering
 
@@ -263,8 +263,8 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
 
 		obs1x = obs1x - obs_speed;
-		if (obs1x <= 150){
-			obs1y = 320 + (rand() % 230);
+		if (obs1x <= 150){ //if the slice gone to the end then it will come again in the frame by this segment
+			obs1y = 320 + (rand() % 230);   // generating random y axis co-ordinate
 			obs1x = 1920;
 			c1 = true;
 		}
@@ -287,7 +287,7 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 
 
 void cng_coin(){
-	coin_index = (coin_index + 1) % 4;
+	coin_index = (coin_index + 1) % 4; // coin animation
 }
 
 
@@ -330,22 +330,22 @@ void cln_coin(){
 }
 */
 void collisioncheck(){
-	if (chx + 100 >= obs1x+35 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){     // the condition for CHECKING the collsions
+	if (chx + 100 >= obs1x+35 && chx <= obs1x + 80 && chy + 83 >= obs1y+20 && chy <= obs1y + 120){     // the condition for CHECKING the collsions
 		GameState = 3;
 	}
-	if (chx + 100 >= obs1x + 35 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
+	if (chx + 100 >= obs1x + 35 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y - obs_gap+5 && chy <= obs1y - obs_gap + 108){
 		GameState = 3;
 	} 
-	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y+10 && chy <= obs2y + 134){
+	if (chx + 100 >= obs2x + 50 && chx <= obs2x + 80 && chy + 83 >= obs2y + 10 && chy <= obs2y + 134){
 		GameState = 3;
 	}
-	if (chx + 100 >= obs2x + 30 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
+	if (chx + 100 >= obs2x + 50 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
 		GameState = 3;
 	}
-	if (chx + 80 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y + 18 && chy <= obs3y + 60){
+	if (chx + 80 >= obs3x + 25 && chx <= obs3x + 130 && chy + 83 >= obs3y +30 && chy <= obs3y + 60){
 		GameState = 3;
 	}
-	if (chx + 80 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap + 18 && chy <= obs3y - obs_gap + 60){
+	if (chx + 80 >= obs3x + 25 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap +92 && chy <= obs3y - obs_gap + 122){
 		GameState = 3;
 	}
 	if (scr_index + 1 == 10 && lvl_end==-1){  // condition for  level end and increasing the difficulty
@@ -358,21 +358,21 @@ void collisioncheck(){
 		obs_speed = obs_speed + 8;
 		lvl_end = 1;
 	}
-	if (scr_index == 29) GameState = 3; // condition for  gameover
+	if (scr_index+1 == 30) GameState = 3; // condition for  gameover
 }
 void cln_coin(){
 	//collisions for coins
-	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 120) + 75 && chy <= (obs1y - 110) + 105 && c1 == true){
-		scr_index = (scr_index + 1) % 29;
+	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 120) + 60 && chy <= (obs1y - 110) + 105 && c1 == true){
+		scr_index = (scr_index + 1) ;
 		c1 = false;
 		//PlaySound("music\\lvl_end.wav", NULL, SND_ASYNC);
 	}
 	else if (chx + 100 >= (obs2x + 20) + 30 && chx + 100 <= (obs2x + 20) + 85 && chy + 83 >= (obs2y - 120) + 75 && chy <= (obs2y - 100) + 65 && c2 == true){
-		scr_index = (scr_index + 1) % 29;
+		scr_index = (scr_index + 1) ;
 		c2 = false;
 	}
-	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 100) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
-		scr_index = (scr_index + 1) % 29;
+	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 100) + 70 && chy <= (obs3y - 85) + 55 && c3 == true){
+		scr_index = (scr_index + 1) ;
 		c3 = false;
 	}
 }
