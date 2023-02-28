@@ -330,10 +330,10 @@ void cln_coin(){
 }
 */
 void collisioncheck(){
-	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){     // the condition for CHECKING the collsions
+	if (chx + 100 >= obs1x+35 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){     // the condition for CHECKING the collsions
 		GameState = 3;
 	}
-	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy+83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
+	if (chx + 100 >= obs1x + 35 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
 		GameState = 3;
 	} 
 	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y+10 && chy <= obs2y + 134){
@@ -342,20 +342,20 @@ void collisioncheck(){
 	if (chx + 100 >= obs2x + 30 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
 		GameState = 3;
 	}
-	if (chx >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y+18 && chy <= obs3y + 85){
+	if (chx + 80 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y + 18 && chy <= obs3y + 60){
 		GameState = 3;
 	}
-	if (chx >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 60){
+	if (chx + 80 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap + 18 && chy <= obs3y - obs_gap + 60){
 		GameState = 3;
 	}
 	if (scr_index + 1 == 10 && lvl_end==-1){  // condition for  level end and increasing the difficulty
 		bg_speed = 16;
-		obs_speed = obs_speed + 10;
+		obs_speed = obs_speed + 8;
 		lvl_end = 1;
 	}
 	if (scr_index + 1 == 10 && lvl_end==-1){ // condition for  level end and increasing the difficulty
 		bg_speed = 32;
-		obs_speed = obs_speed + 10;
+		obs_speed = obs_speed + 8;
 		lvl_end = 1;
 	}
 	if (scr_index == 29) GameState = 3; // condition for  gameover
