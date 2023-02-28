@@ -114,12 +114,14 @@ void iDraw()
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
 
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
-		if (c3 == true) iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
 		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
+		if (c3 == true) iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
+		iShowBMP2(obs3x, obs3y - obs_gap + 90, "obstrcle1//6.bmp", 0);
+
+
 
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
-
 
 
 	}
@@ -289,6 +291,8 @@ void cng_coin(){
 	coin_index = (coin_index + 1) % 4;
 }
 
+
+/*
 void collisioncheck(){
 	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
 		//GameState = -1;
@@ -321,6 +325,44 @@ void cln_coin(){
 		c2 = false;
 	}
 	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 85) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
+		scr_index = (scr_index + 1) % 29;
+		c3 = false;
+	}
+}
+*/
+void collisioncheck(){
+	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
+		GameState = 3;
+	}
+	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy+83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
+		GameState = 3;
+	} 
+	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y+10 && chy <= obs2y + 134){
+		GameState = 3;
+	}
+	if (chx + 100 >= obs2x + 30 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
+		GameState = 3;
+	}
+	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y+10 && chy <= obs3y + 85){
+		GameState = 3;
+	}
+	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 67){
+		GameState = 3;
+	}
+	if (scr_index == 29) GameState = 3;
+}
+void cln_coin(){
+	//collisions for coins
+	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 120) + 75 && chy <= (obs1y - 110) + 105 && c1 == true){
+		scr_index = (scr_index + 1) % 29;
+		c1 = false;
+		//PlaySound("music\\lvl_end.wav", NULL, SND_ASYNC);
+	}
+	else if (chx + 100 >= (obs2x + 20) + 30 && chx + 100 <= (obs2x + 20) + 85 && chy + 83 >= (obs2y - 120) + 75 && chy <= (obs2y - 100) + 65 && c2 == true){
+		scr_index = (scr_index + 1) % 29;
+		c2 = false;
+	}
+	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 100) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
 		scr_index = (scr_index + 1) % 29;
 		c3 = false;
 	}
