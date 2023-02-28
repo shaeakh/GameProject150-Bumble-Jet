@@ -61,6 +61,7 @@ bool c3 = true;
 
 int bg_music = 0;
 bool lvl_music = true;
+int lvl_end = -1;
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -343,11 +344,21 @@ void collisioncheck(){
 	if (chx + 100 >= obs2x + 30 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
 		GameState = 3;
 	}
-	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y+10 && chy <= obs3y + 85){
+	if (chx >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y+18 && chy <= obs3y + 85){
 		GameState = 3;
 	}
-	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 67){
+	if (chx >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 60){
 		GameState = 3;
+	}
+	if (scr_index + 1 == 10 && lvl_end==-1){
+		bg_speed = 16;
+		obs_speed = obs_speed + 10;
+		lvl_end = 1;
+	}
+	if (scr_index + 1 == 10 && lvl_end==-1){
+		bg_speed = 32;
+		obs_speed = obs_speed + 10;
+		lvl_end = 1;
 	}
 	if (scr_index == 29) GameState = 3;
 }
