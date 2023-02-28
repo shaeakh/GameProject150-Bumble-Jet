@@ -13,7 +13,7 @@ Version: 2.0
 using namespace std;
 
 //difficulty section
-int obs_gap = 250;
+int obs_gap = 250; // this variable is for the gap between obstrucle gap
 int obs_hi = 750; //
 int obs_lo = 500;
 // int bg_speed = 16;
@@ -41,27 +41,26 @@ int obs3x = 1280;//120*134
 int obs3y = 320; // lowest
 int obs2x = 1920;//130*60  
 int obs2y = 390; // mid 
-int obs_speed = 10;
+int obs_speed = 10; // this is the speed of moving obstrucles
 
 int GameState = -1; // this variable stores the homepage index
 
-int play_x = 37;
-int play_y = 407;
-int ins_x = 37;
-int ins_y = 305;
-int abt_x = 37;
-int abt_y = 198;
-int exit_x = 37;
-int exit_y = 87;
+int play_x = 37;  // the x co-ordinate for the button "PLAY GAME"
+int play_y = 407; // the Y co-ordinate for the button "PLAY GAME"
+int ins_x = 37; // the x co-ordinate for the button "INSTRUCTION"
+int ins_y = 305; // the Y co-ordinate for the button "INSTRUCTION"
+int abt_x = 37; // the x co-ordinate for the button "ABOUT"
+int abt_y = 198;// the Y co-ordinate for the button "ABOUT"
+int exit_x = 37;// the x co-ordinate for the button "EXIT"
+int exit_y = 87;// the Y co-ordinate for the button "EXIT"
 
-int coin_index = 0;
-bool c1 = true;
-bool c2 = true;
-bool c3 = true;
+int coin_index = 0; // the picture index variable for coins
+bool c1 = true; // the bool variable that disappears the coin after collision
+bool c2 = true; // the bool variable that disappears the coin after collision
+bool c3 = true; // the bool variable that disappears the coin after collision
 
-int bg_music = 0;
-bool lvl_music = true;
-int lvl_end = -1;
+int bg_music = 0; // the variable that controls bg music
+int lvl_end = -1; // this variable changes when the level complete and triggers the difficulty section
 
 char img[60][100] = { "screen//1.bmp", "screen//2.bmp", "screen//3.bmp", "screen//4.bmp", "screen//5.bmp", "screen//6.bmp", "screen//7.bmp", "screen//8.bmp", "screen//9.bmp", "screen//10.bmp", "screen//11.bmp", "screen//12.bmp", "screen//13.bmp", "screen//14.bmp", "screen//15.bmp", "screen//16.bmp", "screen//17.bmp", "screen//18.bmp", "screen//19.bmp", "screen//20.bmp", "screen//21.bmp", "screen//22.bmp", "screen//23.bmp", "screen//24.bmp", "screen//25.bmp", "screen//26.bmp", "screen//27.bmp", "screen//28.bmp", "screen//29.bmp", "screen//30.bmp",
 "screen//31.bmp", "screen//32.bmp", "screen//33.bmp", "screen//34.bmp", "screen//35.bmp", "screen//36.bmp", "screen//37.bmp", "screen//38.bmp", "screen//39.bmp", "screen//40.bmp", "screen//41.bmp", "screen//42.bmp", "screen//43.bmp", "screen//44.bmp", "screen//45.bmp", "screen//46.bmp", "screen//47.bmp", "screen//48.bmp", "screen//49.bmp", "screen//50.bmp", "screen//51.bmp", "screen//52.bmp", "screen//53.bmp", "screen//54.bmp", "screen//55.bmp", "screen//56.bmp", "screen//57.bmp", "screen//58.bmp", "screen//59.bmp", "screen//60.bmp" };
@@ -76,10 +75,12 @@ char score_board[30][35] = { "scoreboard//Slide1.bmp", "scoreboard//Slide2.bmp",
 //this string is for the scoreboard
 
 char coin[4][15] = { "coin//1.bmp", "coin//2.bmp", "coin//3.bmp", "coin//4.bmp", };
+//this string is for the coin picture
 
 char g_over[30][15] = { "over//1.bmp", "over//2.bmp", "over//3.bmp", "over//4.bmp", "over//5.bmp", "over//6.bmp", "over//7.bmp", "over//8.bmp", "over//9.bmp", "over//10.bmp",
 "over//11.bmp", "over//12.bmp", "over//13.bmp", "over//14.bmp", "over//15.bmp", "over//16.bmp", "over//17.bmp", "over//18.bmp", "over//19.bmp", "over//20.bmp",
 "over//21.bmp", "over//22.bmp", "over//23.bmp", "over//24.bmp", "over//25.bmp", "over//26.bmp", "over//27.bmp", "over//28.bmp", "over//29.bmp", "over//30.bmp", };
+//this string is for the end scene
 
 //char obs[30][35]
 
@@ -94,10 +95,10 @@ void iDraw()
 	iClear();
 	if (GameState == -1){					// if the GameState is -1 that means the game is now paused
 		iShowBMP(0, 0, "menu//bg.bmp");// render the homepage 
-		iShowBMP2(play_x, play_y, "menu//1.bmp", 0);
+		iShowBMP2(play_x, play_y, "menu//1.bmp", 0); // this for line prints the buttons for home page
 		iShowBMP2(ins_x, ins_y, "menu//2.bmp", 0);
 		iShowBMP2(abt_x, abt_y, "menu//3.bmp", 0);
-		iShowBMP2(exit_x, exit_y, "menu//4.bmp", 0);			// 
+		iShowBMP2(exit_x, exit_y, "menu//4.bmp", 0);		
 	}
 	else if (GameState == 0){
 		for (int i = 9; i < slice; i++){
@@ -106,20 +107,17 @@ void iDraw()
 
 
 
-		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle 
-		if (c1 == true) iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
-		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
+		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle (upper one)
+		if (c1 == true) iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0); //this four lines are rendering the coins
+		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);//this four lines are rendering the obstrcle (lower one)
 
 		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
 		if (c2 == true) iShowBMP2(obs2x + 20, obs2y - 100, coin[coin_index], 0);
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
 
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
-		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
 		if (c3 == true) iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
 		iShowBMP2(obs3x, obs3y - obs_gap + 90, "obstrcle1//6.bmp", 0);
-
-
 
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
@@ -129,15 +127,15 @@ void iDraw()
 
 	if (GameState == 1){
 		//place your drawing codes here
-		iShowBMP(0, 0, "menu//instruction.bmp");
+		iShowBMP(0, 0, "menu//instruction.bmp"); // instruction page
 	}
 	if (GameState == 2){
 		//place your drawing codes here
-		iShowBMP(0, 0, "menu//about.bmp");
+		iShowBMP(0, 0, "menu//about.bmp"); // about page
 	}
 	if (GameState == 3){
 		//place your drawing codes here
-		iShowBMP(0, 0, g_over[scr_index]);
+		iShowBMP(0, 0, g_over[scr_index]); // end scene
 	}
 }
 
@@ -164,11 +162,11 @@ void iMouse(int button, int state, int mx, int my)
 			if (mx >= play_x && mx <= play_x + 386 && my >= play_y && my <= play_y + 76)		// the condition for the option "PLAY GAME" in the homepage
 				GameState = 0;
 			//place your codes here
-			if (mx >= ins_x && mx <= ins_x + 386 && my >= ins_y && my <= ins_y + 76)
+			if (mx >= ins_x && mx <= ins_x + 386 && my >= ins_y && my <= ins_y + 76) // the condition for the option "INSTRUCTION" in the homepage
 				GameState = 1;
-			if (mx >= abt_x && mx <= abt_x + 386 && my >= abt_y && my <= abt_y + 76)
+			if (mx >= abt_x && mx <= abt_x + 386 && my >= abt_y && my <= abt_y + 76) // the condition for the option "ABOUT" in the homepage
 				GameState = 2;
-			if (mx >= exit_x && mx <= exit_x + 386 && my >= exit_y && my <= exit_y + 76)
+			if (mx >= exit_x && mx <= exit_x + 386 && my >= exit_y && my <= exit_y + 76) // the condition for the option "EXIT" in the homepage
 				exit(0);
 			//PlaySound("music\\click.wav", NULL,SND_ASYNC);
 
@@ -332,7 +330,7 @@ void cln_coin(){
 }
 */
 void collisioncheck(){
-	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
+	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){     // the condition for CHECKING the collsions
 		GameState = 3;
 	}
 	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy+83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
@@ -350,17 +348,17 @@ void collisioncheck(){
 	if (chx >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 60){
 		GameState = 3;
 	}
-	if (scr_index + 1 == 10 && lvl_end==-1){
+	if (scr_index + 1 == 10 && lvl_end==-1){  // condition for  level end and increasing the difficulty
 		bg_speed = 16;
 		obs_speed = obs_speed + 10;
 		lvl_end = 1;
 	}
-	if (scr_index + 1 == 10 && lvl_end==-1){
+	if (scr_index + 1 == 10 && lvl_end==-1){ // condition for  level end and increasing the difficulty
 		bg_speed = 32;
 		obs_speed = obs_speed + 10;
 		lvl_end = 1;
 	}
-	if (scr_index == 29) GameState = 3;
+	if (scr_index == 29) GameState = 3; // condition for  gameover
 }
 void cln_coin(){
 	//collisions for coins
