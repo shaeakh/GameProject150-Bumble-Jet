@@ -14,7 +14,7 @@
     <ClCompile Include="iMain.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E19D5BD-2788-4546-BC7B-42A2E76D445F}</ProjectGuid>
+    <ProjectGuid>{5E00F524-5BB7-4FB1-8E24-AF57AA54B875}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -103,32 +103,19 @@ void iDraw()
 			iShowBMP(bg1[i], 0, img[i]); // this loop is for Level 1 Background rendering
 		}
 
-<<<<<<< HEAD
+
+
 		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle 
 		if (c1 == true) iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
 		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
 
-=======
-		
-		
-		iShowBMP2(obs1x, obs1y, "obstrcle1//1.bmp", 0);   //this four lines are rendering the obstrcle 
-		if (c1 == true) iShowBMP2(obs1x, obs1y - 100, coin[coin_index], 0);
-		iShowBMP2(obs1x, obs1y - obs_gap, "obstrcle1//2.bmp", 0);
-		
->>>>>>> 19cee42a8bd749dfe38045875bc40d0b93eb1722
 		iShowBMP2(obs2x, obs2y, "obstrcle1//3.bmp", 0);
 		if (c2 == true) iShowBMP2(obs2x + 20, obs2y - 100, coin[coin_index], 0);
 		iShowBMP2(obs2x, obs2y - obs_gap, "obstrcle1//4.bmp", 0);
 
 		iShowBMP2(obs3x, obs3y, "obstrcle1//5.bmp", 0);
 		if (c3 == true) iShowBMP2(obs3x + 30, obs3y - 85, coin[coin_index], 0);
-<<<<<<< HEAD
-		iShowBMP2(obs3x, obs3y - obs_gap + 90, "obstrcle1//6.bmp", 0);
-
-
-=======
 		iShowBMP2(obs3x, obs3y - obs_gap + 100, "obstrcle1//6.bmp", 0);
->>>>>>> 19cee42a8bd749dfe38045875bc40d0b93eb1722
 
 		iShowBMP(0, 0, score_board[scr_index]); // this function is rendering the scoreboard
 		iShowBMP2(chx, chy, chr[chr_index], 0); //rendering the character images
@@ -186,7 +173,7 @@ void iMouse(int button, int state, int mx, int my)
 		if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 		{
 			//place your codes here
-			
+
 		}
 	}
 }
@@ -273,13 +260,13 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 			if (bg1[i] <= 0) bg1[i] = bg_width;//1616
 		}
 		chr_index = (chr_index + 1) % 7; // this line updates the character rendering index
-		
+
 		obs1x = obs1x - obs_speed;
 		if (obs1x <= 150){
 			obs1y = 320 + (rand() % 230);
 			obs1x = 1920;
 			c1 = true;
-		} 
+		}
 		obs2x = obs2x - obs_speed;
 		if (obs2x <= 150){
 			obs2x = 1920;
@@ -293,7 +280,7 @@ void change(){								// this function updates the co-ordinates of Level 1 Backg
 			c3 = true;
 		}
 
-		
+
 	}
 }
 
@@ -303,37 +290,13 @@ void cng_coin(){
 }
 
 void collisioncheck(){
-	if (chx + 100 >= obs1x+20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
-<<<<<<< HEAD
-		GameState = 3;
-	}
-	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy+83 >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
-		GameState = 3;
-	} 
-	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y+10 && chy <= obs2y + 134){
-		GameState = 3;
-	}
-	if (chx + 100 >= obs2x + 30 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
-		GameState = 3;
-	}
-	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y+10 && chy <= obs3y + 85){
-		GameState = 3;
-	}
-	if (chx + 100 >= obs3x + 20 && chx <= obs3x + 130 && chy + 83 >= obs3y - obs_gap - 15 && chy <= obs3y - obs_gap + 67){
-		GameState = 3;
-	}
-	if (scr_index == 29) GameState = 3;
-}
-void cln_coin(){
-	//collisions for coins
-	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 120) + 75 && chy <= (obs1y - 110) + 105 && c1 == true){
-=======
+	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy + 83 >= obs1y && chy <= obs1y + 120){
 		//GameState = -1;
 	}
 	if (chx + 100 >= obs1x + 20 && chx + 100 <= obs1x + 80 && chy >= obs1y - obs_gap && chy <= obs1y - obs_gap + 133){
-	//	GameState = -1;
-	} 
-	if (chx + 100 >= obs2x+20 && chx <= obs2x + 80 && chy + 83 >= obs2y && chy <= obs2y + 134){
+		//	GameState = -1;
+	}
+	if (chx + 100 >= obs2x + 20 && chx <= obs2x + 80 && chy + 83 >= obs2y && chy <= obs2y + 134){
 		//GameState = -1;
 	}
 	if (chx + 100 >= obs2x + 20 && chx <= obs2x + 80 && chy + 83 >= obs2y - obs_gap + 4 && chy <= obs2y - obs_gap + 127){
@@ -349,24 +312,15 @@ void cln_coin(){
 void cln_coin(){
 	//collisions for coins
 	if (chx + 100 >= (obs1x)+30 && chx + 100 <= (obs1x)+85 && chy + 83 >= (obs1y - 100) + 75 && chy <= (obs1y - 100) + 105 && c1 == true){
->>>>>>> 19cee42a8bd749dfe38045875bc40d0b93eb1722
 		scr_index = (scr_index + 1) % 29;
 		c1 = false;
 		//PlaySound("music\\lvl_end.wav", NULL, SND_ASYNC);
 	}
-<<<<<<< HEAD
-	else if (chx + 100 >= (obs2x + 20) + 30 && chx + 100 <= (obs2x + 20) + 85 && chy + 83 >= (obs2y - 120) + 75 && chy <= (obs2y - 100) + 65 && c2 == true){
-		scr_index = (scr_index + 1) % 29;
-		c2 = false;
-	}
-	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 100) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
-=======
 	else if (chx + 100 >= (obs2x + 20) + 30 && chx + 100 <= (obs2x + 20) + 85 && chy + 83 >= (obs2y - 100) + 75 && chy <= (obs2y - 100) + 105 && c2 == true){
 		scr_index = (scr_index + 1) % 29;
 		c2 = false;
 	}
 	else if (chx + 100 >= (obs3x + 30) + 30 && chx + 100 <= (obs3x + 30) + 85 && chy + 83 >= (obs3y - 85) + 85 && chy <= (obs3y - 85) + 105 && c3 == true){
->>>>>>> 19cee42a8bd749dfe38045875bc40d0b93eb1722
 		scr_index = (scr_index + 1) % 29;
 		c3 = false;
 	}
@@ -375,7 +329,7 @@ void cln_coin(){
 int main()
 {
 	setall();
-	
+
 	iSetTimer(25, change);
 	iSetTimer(60, cng_coin);
 	iSetTimer(5, collisioncheck);
@@ -383,11 +337,11 @@ int main()
 
 	//if (bg_music==true)
 	PlaySound("music\\bgmusic.wav", NULL, SND_LOOP | SND_ASYNC);
-	
-	
+
+
 
 	//place your own initialization codes here.
 	iInitialize(1280, 720, "Bumbble Jet");
-	
+
 	return 0;
 }
