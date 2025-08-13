@@ -10,12 +10,8 @@ Navigate through spiky obstacles, dodge enemy jets, and survive against all odds
 
 ## 📸 Screenshots & Demo
 
-| Gameplay                                                                                                                                         | Demo GIF                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| ![Bumbble Jet 2\_26\_2023 12\_36\_09 AM](https://user-images.githubusercontent.com/102303488/221374225-5f700919-1e92-4975-b08b-5f97dc011c04.png) | ![Bumble Jet Demo](https://github.com/user-attachments/assets/6bc53dd9-1a68-471d-847d-87ca66742417) |
-| ![Bumbble Jet 2\_26\_2023 12\_41\_15 AM](https://user-images.githubusercontent.com/102303488/221374298-4e47609e-7bd2-4459-945f-e1ea810f0fa5.png) |                                                                                                     |
-| ![Bumbble Jet 2\_26\_2023 12\_40\_59 AM](https://user-images.githubusercontent.com/102303488/221374354-83edd4e8-d61e-4c87-924c-7577e07ce2d6.png) |                                                                                                     |
-| ![Bumbble Jet 2\_26\_2023 12\_37\_59 AM](https://user-images.githubusercontent.com/102303488/221374338-ef50551d-1a3b-48ac-be58-30b94b94121d.png) |                                                                                                     |
+| Gameplay
+![Bumble Jet Demo](https://github.com/user-attachments/assets/6bc53dd9-1a68-471d-847d-87ca66742417)
 
 ---
 
