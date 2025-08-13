@@ -6,12 +6,18 @@ A **2D arcade game** developed in **C++** using the **iGraphics** library.
 You play as **Pete Mitchell**, a daring P-51 Mustang pilot on a high-stakes escape mission from enemy territory.
 Navigate through spiky obstacles, dodge enemy jets, and survive against all odds!
 
+[![🎥 See Video Demonstration](https://img.shields.io/badge/🎥%20See%20Video%20Demonstration-blue?style=for-the-badge)](https://drive.google.com/file/d/17ImRRfhJbCgIGxKEY6jK-utYz2c3fIdV/view?usp=drive_link)
+
 ---
 
 ## 📸 Screenshots & Demo
 
-| Gameplay
-![Adobe Express - Game 150 – Bumble Jet (mid )](https://github.com/user-attachments/assets/a79dbc02-afb8-4aa1-829c-75d88f184c02)
+| Gameplay                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ![Bumbble Jet 2\_26\_2023 12\_36\_09 AM](https://user-images.githubusercontent.com/102303488/221374225-5f700919-1e92-4975-b08b-5f97dc011c04.png) |
+| ![Bumbble Jet 2\_26\_2023 12\_41\_15 AM](https://user-images.githubusercontent.com/102303488/221374298-4e47609e-7bd2-4459-945f-e1ea810f0fa5.png) |
+| ![Bumbble Jet 2\_26\_2023 12\_40\_59 AM](https://user-images.githubusercontent.com/102303488/221374354-83edd4e8-d61e-4c87-924c-7577e07ce2d6.png) |
+| ![Bumbble Jet 2\_26\_2023 12\_37\_59 AM](https://user-images.githubusercontent.com/102303488/221374338-ef50551d-1a3b-48ac-be58-30b94b94121d.png) |
 
 ---
 
