@@ -11,7 +11,7 @@ Navigate through spiky obstacles, dodge enemy jets, and survive against all odds
 ## 📸 Screenshots & Demo
 
 | Gameplay
-![Bumble Jet Demo](https://github.com/user-attachments/assets/6bc53dd9-1a68-471d-847d-87ca66742417)
+![Adobe Express - Game 150 – Bumble Jet (mid )](https://github.com/user-attachments/assets/a79dbc02-afb8-4aa1-829c-75d88f184c02)
 
 ---
 
