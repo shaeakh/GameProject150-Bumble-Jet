@@ -1,21 +1,79 @@
-![Bumbble Jet 2_26_2023 12_36_09 AM](https://user-images.githubusercontent.com/102303488/221374225-5f700919-1e92-4975-b08b-5f97dc011c04.png)
-![Bumbble Jet 2_26_2023 12_41_15 AM](https://user-images.githubusercontent.com/102303488/221374298-4e47609e-7bd2-4459-945f-e1ea810f0fa5.png)
-![Bumbble Jet 2_26_2023 12_40_59 AM](https://user-images.githubusercontent.com/102303488/221374354-83edd4e8-d61e-4c87-924c-7577e07ce2d6.png)
-![Bumbble Jet 2_26_2023 12_37_59 AM](https://user-images.githubusercontent.com/102303488/221374338-ef50551d-1a3b-48ac-be58-30b94b94121d.png)
+---
 
-# GameProject150-Bumble-Jet
-game name: bumble jet
+# ✈️ Bumble Jet
 
-Abstract :
-The game is made with C++ language with an iGraphics.h header file contains some drawing functions that can be used to draw basic graphical shapes in Visual C++. Simply calling the drawing functions a user can draw any 2D shape on screen. This library also provides easy ways for animation, keyboard and mouse event handling. Using these functions we made the character to move, the objects to work as obstacles with some logic. 
+A **2D arcade game** developed in **C++** using the **iGraphics** library.
+You play as **Pete Mitchell**, a daring P-51 Mustang pilot on a high-stakes escape mission from enemy territory.
+Navigate through spiky obstacles, dodge enemy jets, and survive against all odds!
 
-Origin Story of game : Bumble jet is an arcade game that is all about a jet fighter named Pete Mitchell. He is on a suicidal mission. With his awesome training he finally able to capture the object and managed to get out the enemy territory. But an alarm detected his suspicious movement and made an level 3 alert. Now he has to save his back and escape anyhow from the enemy force. 
+---
 
-game function : our player is in the P51 Mustang Jet fighter. the obstacle will  be pillars with spikes in it. our player have to move vertically between those pillars to save himself and progress in game. In the second level , there will be a enemy jet against him. he have to move vertically to dodge that jet fighter. He also have to be careful about the spiky pillars in  time of crossing  the enemy jet.
+## 📸 Screenshots & Demo
 
-game character: player: pete mitchell in a P51 Mustang
-obstacles: spikes, thorns ,enemy with another jet fighter. 
+| Gameplay                                                                                                                                         | Demo GIF                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| ![Bumbble Jet 2\_26\_2023 12\_36\_09 AM](https://user-images.githubusercontent.com/102303488/221374225-5f700919-1e92-4975-b08b-5f97dc011c04.png) | ![Bumble Jet Demo](https://github.com/user-attachments/assets/6bc53dd9-1a68-471d-847d-87ca66742417) |
+| ![Bumbble Jet 2\_26\_2023 12\_41\_15 AM](https://user-images.githubusercontent.com/102303488/221374298-4e47609e-7bd2-4459-945f-e1ea810f0fa5.png) |                                                                                                     |
+| ![Bumbble Jet 2\_26\_2023 12\_40\_59 AM](https://user-images.githubusercontent.com/102303488/221374354-83edd4e8-d61e-4c87-924c-7577e07ce2d6.png) |                                                                                                     |
+| ![Bumbble Jet 2\_26\_2023 12\_37\_59 AM](https://user-images.githubusercontent.com/102303488/221374338-ef50551d-1a3b-48ac-be58-30b94b94121d.png) |                                                                                                     |
 
-level :
-In this game there are two levels. In the first level where the difficulty is almost zero. He just has to pass through the obstacles and consume the points. In the 2nd level, there is another enemy jet, which wants to kill him. 
-Along having obstacles and enemy, the player must have to dodge them and service.
+---
+
+## 🎮 Gameplay Overview
+
+**Origin Story:**
+Pete Mitchell, a legendary fighter pilot, successfully captures a classified object deep inside enemy territory. Unfortunately, his escape triggers a **Level 3 Alert**. Now, he must rely on his skills to survive and return safely.
+
+**Game Mechanics:**
+
+* **Level 1:** Avoid spiky pillars while collecting points.
+* **Level 2:** Continue dodging obstacles while evading an enemy jet that’s trying to shoot you down.
+
+**Characters & Obstacles:**
+
+* **Player:** Pete Mitchell in a **P-51 Mustang**.
+* **Obstacles:** Spikes, thorns, and an enemy fighter jet.
+
+---
+
+## 🛠 Tech Stack
+
+* **Language:** C++
+* **Graphics Library:** iGraphics (for 2D rendering, animation, and event handling)
+
+---
+
+## 📂 File Structure
+
+```
+GameProject150-Bumble-Jet/
+├── iGraphics.h          # Graphics library header
+├── main.cpp             # Game entry point
+├── assets/              # Game textures & images
+├── README.md            # Documentation
+└── ...
+```
+
+---
+
+## 🧑‍💻 How to Run
+
+1️⃣ **Clone the repository**
+
+```bash
+git clone https://github.com/shaeakh/GameProject150-Bumble-Jet.git
+cd GameProject150-Bumble-Jet
+```
+
+2️⃣ **Open in Visual Studio** (or any C++ IDE that supports Windows graphics programming)
+
+3️⃣ **Compile & Run**
+Make sure `iGraphics.h` is included in your project’s include directory.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
